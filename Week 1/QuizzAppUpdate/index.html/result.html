@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Quiz</title>
+    <link rel="stylesheet" href="/QuizzApp/css/style.css" />
+    <script defer src="/QuizzApp/views/Play/quiz.js"></script>
+  </head>
+  <style>
+    .emo{
+        text-align: center;
+        margin-bottom: 20px;
+        display: flex;
+    }
+    .emo img{
+        width: 50px;
+        height: 50px;
+    }
+    image {
+      display: b;
+      margin: auto;
+      max-width: 200px;
+    height: 180px;
+    }
+    .container {
+      width: 400px;
+        margin: 50px auto;
+      background: rgb(255, 255, 255);
+      padding: 20px 20px 20px 20px;
+        border-radius: 15px;
+    }
+
+    #score-container {
+      font-size: 24px;
+      margin-bottom: 20px;
+    }
+
+    button {
+      padding: 10px 20px;
+      font-size: 16px;
+      cursor: pointer;
+      border-radius: 10px;
+      background-color: green;
+    }
+  </style>
+  <body>
+    <nav>
+      <div class="nav-left">
+        <span class="menu-btn">☰</span>
+        <h1>Quiz Game</h1>
+      </div>
+
+      <div class="nav-right">
+        <button class="secondary">Play</button>
+        <button onclick="window.location.href = '/views/edit/edit.html'">Edit Quiz</button>
+      </div>
+    </nav>
+    <main>
+        <div class="container">
+    <div id="quiz">
+        <div class="emo">
+            <h2>Your Emoji: <a href=""></a></h2>
+        <img id="score-img" alt="Result Image">
+        </div>
+        <div id="scoreContainer"></div>
+        <button onclick="window.location.href = '/QuizzApp/index.html/home.html'">Go Home</button>
+
+    </div>
+</div>
+    </main>
+    </div>
+  </body>
+  <script>
+    const score = Number(localStorage.getItem("score") || 0);
+    const total = 10;
+    const percent = Math.round((score / total) * 100);
+
+    const box = document.getElementById("scoreContainer");
+    if (box) box.innerHTML = `<h2>Your Score: ${score}/${total} (${percent}%)</h2>`;
+
+    const img = document.getElementById("score-img");
+    if (img) {
+    if (percent >= 80) img.src = "/QuizzApp/Source/p80up.png";
+    else if (percent >= 60) img.src = "/QuizzApp/Source/p60-80.png";
+    else if (percent >= 40) img.src = "/QuizzApp/Source/p40-60.png";
+    else if (percent >= 20) img.src = "/QuizzApp/Source/p20-40.png";
+    else img.src = "/QuizzApp/Source//p0-20.png";
+    }
+  </script>
+</html>

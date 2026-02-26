@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Play</title>
+    <link rel="stylesheet" href="/QuizzApp/css/style.css" />
+    <script defer src="/QuizzApp/views/Play/play.js"></script>
+  </head>
+
+  <body>
+    <nav>
+      <div class="nav-left">
+        <span class="menu-btn" onclick="window.location.href='/index.html/home.html'">☰</span>
+        <h1>Quiz Game</h1>
+      </div>
+
+      <div class="nav-right">
+        <button class="secondary">Play</button>
+        <button onclick="window.location.href='/QuizzApp/views/edit/edit.html'">Edit Quiz</button>
+      </div>
+    </nav>
+
+    <main>
+      <!-- Start button -->
+      <div id="start" style="display: none">Start Quiz!</div>
+      <!-- Quiz box -->
+      <div id="quiz">
+        <!-- Progress bar -->
+        <div id="progressWrap">
+          <div id="progressBar"></div>
+        </div>
+
+        <div id="question">QQQQQQQQ</div>
+
+        <div id="choices">
+          <div class="choice" id="A" onclick="onPlayerSubmit('A')">AAAA</div>
+          <div class="choice" id="B" onclick="onPlayerSubmit('B')">BBBB</div>
+          <div class="choice" id="C" onclick="onPlayerSubmit('C')">CCCC</div>
+          <div class="choice" id="D" onclick="onPlayerSubmit('D')">DDDD</div>
+        </div>
+
+        <div id="scoreContainer" style="display: none"></div>
+      </div>
+    </main>
+  </body>
+</html>

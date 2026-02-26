@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Edit Quiz</title>
+
+    <link rel="stylesheet" href="/QuizzApp/css/style.css" />
+    <script defer src="/QuizzApp/views/edit/edit.js"></script>
+
+    <style>
+      main {
+        max-width: 900px;
+        margin: 24px auto;
+        padding: 0 16px;
+      }
+      .toolbar {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 12px;
+        margin-bottom: 14px;
+      }
+      .list {
+        display: grid;
+        gap: 10px;
+      }
+      .row {
+        display: grid;
+        grid-template-columns: 1fr auto;
+        gap: 12px;
+        align-items: center;
+        background: #fff;
+        padding: 12px;
+        border-radius: 10px;
+      }
+      .row-title {
+        font-weight: 600;
+      }
+      .row-actions {
+        display: flex;
+        gap: 8px;
+      }
+      .icon-btn {
+        border: none;
+        cursor: pointer;
+        border-radius: 8px;
+        padding: 8px 10px;
+      }
+
+      /* modal */
+      .modal-backdrop {
+        position: fixed;
+        inset: 0;
+        background: rgba(0, 0, 0, 0.45);
+        display: none;
+        align-items: center;
+        justify-content: center;
+        padding: 16px;
+      }
+      .modal {
+        width: min(720px, 100%);
+        background: #fff;
+        border-radius: 12px;
+        overflow: hidden;
+      }
+      .modal-header {
+        padding: 12px 16px;
+        background: #6a1b9a;
+        color: #fff;
+        font-weight: 700;
+      }
+      .modal-body {
+        padding: 16px;
+        display: grid;
+        gap: 10px;
+      }
+      .field label {
+        display: block;
+        font-size: 14px;
+        margin-bottom: 6px;
+        opacity: 0.85;
+      }
+      .field input,
+      .field select {
+        width: 100%;
+        padding: 10px 12px;
+        border-radius: 10px;
+        border: 1px solid #ddd;
+        outline: none;
+      }
+      .modal-footer {
+        padding: 12px 16px;
+        display: flex;
+        justify-content: flex-end;
+        gap: 10px;
+      }
+      .toolbar h2 {
+        margin: 0;
+      }
+      .toolbar > div {
+        display: flex;
+        gap: 10px;
+        align-items: center;
+      }
+      #empty {
+        display: none;
+        opacity: 0.7;
+        padding: 12px;
+      }
+      #error {
+        display: none;
+        color: #b00020;
+        font-weight: 600;
+      }
+    </style>
+  </head>
+
+  <body>
+    <nav>
+      <div class="nav-left">
+        <span class="menu-btn" onclick="window.location.href='/QuizzApp/index.html/home.html'">☰</span>
+        <h1>Quiz Game</h1>
+      </div>
+
+      <div class="nav-right">
+        <button class="secondary" onclick="window.location.href='/QuizzApp/views/Play/play.html'">
+          Play
+        </button>
+        <button onclick="window.location.href='/QuizzApp/views/edit/edit.html'">Edit Quiz</button>
+      </div>
+    </nav>
+
+    <main>
+      <div class="toolbar">
+        <h2>Edit Questions</h2>
+        <div>
+          <button id="btn-reset" class="secondary" type="button">Reset to default</button>
+          <button id="btn-add" type="button">+ Add question</button>
+        </div>
+      </div>
+
+      <div id="empty">
+        No questions yet. Click <b>Add question</b>.
+      </div>
+
+      <div id="list" class="list"></div>
+    </main>
+
+    <!-- Modal -->
+    <div
+      id="backdrop"
+      class="modal-backdrop"
+      role="dialog"
+      aria-modal="true"
+      aria-labelledby="modal-title"
+    >
+      <div class="modal">
+        <div class="modal-header" id="modal-title">Create new question</div>
+
+        <div class="modal-body">
+          <div class="field">
+            <label for="qTitle">Question Title</label>
+            <input id="qTitle" type="text" placeholder="Type your question..." />
+          </div>
+
+          <div class="field">
+            <label for="aA">Answer A</label>
+            <input id="aA" type="text" placeholder="Choice A" />
+          </div>
+
+          <div class="field">
+            <label for="aB">Answer B</label>
+            <input id="aB" type="text" placeholder="Choice B" />
+          </div>
+
+          <div class="field">
+            <label for="aC">Answer C</label>
+            <input id="aC" type="text" placeholder="Choice C" />
+          </div>
+
+          <div class="field">
+            <label for="aD">Answer D</label>
+            <input id="aD" type="text" placeholder="Choice D" />
+          </div>
+
+          <div class="field">
+            <label for="correct">Correct Answer</label>
+            <select id="correct">
+              <option value="A">A</option>
+              <option value="B">B</option>
+              <option value="C">C</option>
+              <option value="D">D</option>
+            </select>
+          </div>
+
+          <div id="error"></div>
+        </div>
+
+        <div class="modal-footer">
+          <button id="btn-cancel" class="secondary" type="button">Cancel</button>
+          <button id="btn-save" type="button">Save</button>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
